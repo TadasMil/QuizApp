@@ -1,0 +1,22 @@
+@import "../../../../commonStyles/variables";
+
+.NavigationItem {
+    padding: 16px 30px;
+    list-style: none;
+    font-size: 1.2rem;
+    height: 100%;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    &:hover,
+    &:active{
+        background-color: $mainBlue;
+        color: $mainBlack;
+    }
+
+    a{
+        text-decoration: none;
+        color: $mainGreenary;
+
+    }
+}
