@@ -1,0 +1,21 @@
+@import '../../../commonStyles/variables';
+
+.Button {
+    padding: 0.5rem 3rem;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    background-color: $mainRain;
+    color: $mainBlack;
+
+    &:hover{
+        background-color: $mainGreenary;
+        color: $mainBlue;
+    }
+}
