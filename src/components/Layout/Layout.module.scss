@@ -1,13 +1,26 @@
 @import "../../commonStyles/variables";
 
-.Main { 
-    width: 80%;
+.MainArea{
+    min-height: 100%;
     height: 100%;
-    margin: 7rem auto;
+    display: flex;
+    flex-direction: column;
+    //background-color: #eed6e1;
+    //background: url('../../assets/images/back-img3.png');
+    background: url('../../assets/images/bck12.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Main { 
+    width: 60%;
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 @media(max-width: $mobilePhone){

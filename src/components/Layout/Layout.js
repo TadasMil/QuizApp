@@ -6,9 +6,11 @@ export default function Layout(props) {
     return (
         <>
             <Toolbar />
-            <main className={classes.Main}>
-                {props.children}
-            </main>
+            <div className={classes.MainArea}>
+                <main className={classes.Main}>
+                    {props.children}
+                </main>
+            </div>
         </>
     )
 }

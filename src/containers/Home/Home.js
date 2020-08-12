@@ -1,14 +1,11 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 
 export default class Home extends Component {
-    state = {
-        auth: false,
-    }
+   
     render() {
-        return (
-            <>
-            Home
-            </>
-        )
+       return (
+           <p>Tadas</p>
+       )
     }
 }

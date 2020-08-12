@@ -3,7 +3,7 @@
 .Button {
     padding: 0.5rem 3rem;
     display: block;
-    margin: auto;
+    margin: 0 auto 5rem auto;
     border-radius: 10px;
     outline: none;
     border: none;
@@ -11,11 +11,11 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 1.2rem;
-    background-color: $mainRain;
+    background-color: $mainGreenary;
     color: $mainBlack;
 
     &:hover{
-        background-color: $mainGreenary;
-        color: $mainBlue;
+        background-color: #000000;
+        color: $mainWhite;
     }
 }

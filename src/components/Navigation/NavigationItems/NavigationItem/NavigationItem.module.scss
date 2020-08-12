@@ -7,11 +7,12 @@
     height: 100%;
     text-transform: uppercase;
     letter-spacing: 2px;
+    font-weight: bold;
 
     &:hover,
     &:active{
-        background-color: $mainBlue;
-        color: $mainBlack;
+        background-color: #000000;
+        color: $mainWhite;
     }
 
     a{
