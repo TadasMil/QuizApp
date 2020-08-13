@@ -6,18 +6,19 @@ import {ModalLogin} from '../../components/UI/Modal/ModalLogin'
 
 export default class Authorization extends Component {
     state = {
-        username: ''
+        username: '',
+        users: []
     }
 
     componentDidMount(){
         axios.get('/users.json')
         .then(response => {      
             let usersData = Object.keys(response.data).map((user) => {
-                return response.data[user].name
+                return response.data[user]
             })
          this.setState({
              users: usersData
-         })
+         }, ()=>console.log(this.state.users))
         })
     }
 
@@ -33,7 +34,7 @@ export default class Authorization extends Component {
 
         const newUser = {
             name: this.state.username,
-            score: 0,
+            score: this.state.score,
         };
         const userExists = this.state.users.some(user => user === this.state.username);
         //I am mentioning the usage of localStorage for this project in the Home container.
