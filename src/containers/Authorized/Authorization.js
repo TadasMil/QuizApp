@@ -1,15 +1,26 @@
 import React, { Component } from 'react'
 import Login from '../../components/Authorized/Login'
 import axios from '../../axios-users'
-import { Redirect, Route } from 'react-router-dom'
-import Home from '../Home/Home'
-import Quiz from '../Quiz/Quiz'
+import {ModalLogin} from '../../components/UI/Modal/ModalLogin'
+
 
 export default class Authorization extends Component {
     state = {
-        auth: true,
         username: ''
     }
+
+    componentDidMount(){
+        axios.get('/users.json')
+        .then(response => {      
+            let usersData = Object.keys(response.data).map((user) => {
+                return response.data[user].name
+            })
+         this.setState({
+             users: usersData
+         })
+        })
+    }
+
 
     handleUsername = (event) => {
        this.setState({
@@ -19,34 +30,42 @@ export default class Authorization extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const user = {
-            name: this.state.username
-        }
-          axios.post('/users.json', user)
+
+        const newUser = {
+            name: this.state.username,
+            score: 0,
+        };
+        const userExists = this.state.users.some(user => user === this.state.username);
+        //I am mentioning the usage of localStorage for this project in the Home container.
+        if(userExists){
+            localStorage.setItem("user", JSON.stringify(newUser));
+            this.props.history.push({
+                pathname: '/home'
+            })
+        } else {
+            localStorage.setItem("user", JSON.stringify(newUser));
+            axios.post('/users.json', newUser)
             .then(response => {
                 this.setState({
-                    auth: true
+                    username: ""
                 })
-                this.props.history.push('/home');
+                this.props.history.push({
+                    pathname: '/home'
+                })
             })
-            .catch(error => {
+            .catch(error=>{
                 console.log(error)
             })
+        }
     }
     render() {
-        if(this.state.auth === false){
-          return (
+        
+        return (
             <>
-            <Route path='/login' exact component={() => (<Login username={this.state.username} handleOnChange={this.handleOnChange} handleSubmit={this.handleSubmit} />)}/>
-            <Redirect path='/login' />
-           </>
-          )
-        }
-        else {
-           return (
-               <Route path='/home' component={Home} />
-           )
-        }
-      
+                <ModalLogin>
+                    <Login username={this.state.username} handleOnChange={this.handleUsername} handleSubmit={this.handleSubmit} />
+                </ModalLogin> 
+            </>
+        )
     }
 }
