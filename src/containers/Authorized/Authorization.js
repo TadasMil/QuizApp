@@ -7,7 +7,8 @@ import {ModalLogin} from '../../components/UI/Modal/ModalLogin'
 export default class Authorization extends Component {
     state = {
         username: '',
-        users: []
+        users: [],
+        score: 0,
     }
 
     componentDidMount(){
@@ -18,7 +19,7 @@ export default class Authorization extends Component {
             })
          this.setState({
              users: usersData
-         }, ()=>console.log(this.state.users))
+         })
         })
     }
 
@@ -29,21 +30,33 @@ export default class Authorization extends Component {
        })
     }
 
+    checkIfUserExists = (username, arr) => {
+       const user = arr.find(user => {
+           return user.name === username
+       })
+       if(user === undefined){
+           return null;
+       } else {
+           return user;
+       }
+    }
+
     handleSubmit = (event) => {
         event.preventDefault();
+     
+        const userExists = this.checkIfUserExists(this.state.username, this.state.users);
 
-        const newUser = {
-            name: this.state.username,
-            score: this.state.score,
-        };
-        const userExists = this.state.users.some(user => user === this.state.username);
-        //I am mentioning the usage of localStorage for this project in the Home container.
+        //I am mentioning the usage of localStorage for this project in the Home file which is in the containers folder.
         if(userExists){
-            localStorage.setItem("user", JSON.stringify(newUser));
+            localStorage.setItem("user", JSON.stringify(userExists));
             this.props.history.push({
                 pathname: '/home'
             })
         } else {
+            const newUser = {
+                name: this.state.username,
+                score: 0
+            }
             localStorage.setItem("user", JSON.stringify(newUser));
             axios.post('/users.json', newUser)
             .then(response => {

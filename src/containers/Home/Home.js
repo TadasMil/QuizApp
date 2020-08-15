@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { PageModal } from '../../components/UI/Modal/PageModal/PageModal'
+import Profile from '../../components/Home/Profile'
 
 export default class Home extends Component {
    state = {
-       user: []
+       user: {}
    }
 
    //To learn the fundamentals of React using HTTP requests with axios, I decided not to mix
@@ -16,16 +17,17 @@ export default class Home extends Component {
    //because it will trigger to re-render twice, but for the learning purposes and localStorage usage,
    //I will use setState of the current user in the componentDidMount
    componentDidMount(){
-      this.setState({
-          user: localStorage.getItem("user")
-      })
+        let retrievedObject = localStorage.getItem("user");
+        this.setState({
+            user: JSON.parse(retrievedObject)
+        })
    }
 
     render() {
        return (
            <>
                <PageModal>
-                    {console.log(this.state.user)}
+                  <Profile userInfo={this.state.user}></Profile>
                </PageModal>
            </>
        )
