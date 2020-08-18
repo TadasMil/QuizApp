@@ -1,7 +1,6 @@
 @import "../../commonStyles/variables";
 
 .MainArea{
-    min-height: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -18,6 +17,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
-    height: 100vh;
+    min-height: 80%;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }

@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import Login from '../../components/Authorized/Login'
 import axios from '../../axios-users'
 import {ModalLogin} from '../../components/UI/Modal/ModalLogin'
+import {Redirect} from 'react-router-dom'
+import { withRouter } from 'react-router';
 
 
-export default class Authorization extends Component {
+class Authorization extends Component {
     state = {
         username: '',
         users: [],
@@ -22,7 +24,6 @@ export default class Authorization extends Component {
          })
         })
     }
-
 
     handleUsername = (event) => {
        this.setState({
@@ -43,15 +44,14 @@ export default class Authorization extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        this.props.handleAuth();
      
         const userExists = this.checkIfUserExists(this.state.username, this.state.users);
 
         //I am mentioning the usage of localStorage for this project in the Home file which is in the containers folder.
         if(userExists){
             localStorage.setItem("user", JSON.stringify(userExists));
-            this.props.history.push({
-                pathname: '/home'
-            })
+            this.props.history.push('/home')
         } else {
             const newUser = {
                 name: this.state.username,
@@ -62,9 +62,6 @@ export default class Authorization extends Component {
             .then(response => {
                 this.setState({
                     username: ""
-                })
-                this.props.history.push({
-                    pathname: '/home'
                 })
             })
             .catch(error=>{
@@ -77,9 +74,11 @@ export default class Authorization extends Component {
         return (
             <>
                 <ModalLogin>
-                    <Login username={this.state.username} handleOnChange={this.handleUsername} handleSubmit={this.handleSubmit} />
+                    <Login username={this.state.username} handleOnChange={this.handleUsername} handleSubmit={this.handleSubmit}/>
                 </ModalLogin> 
             </>
         )
     }
 }
+
+export default withRouter(Authorization)

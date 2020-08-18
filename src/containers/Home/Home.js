@@ -23,13 +23,15 @@ export default class Home extends Component {
         })
    }
 
-    render() {
-       return (
-           <>
-               <PageModal>
-                  <Profile userInfo={this.state.user}></Profile>
-               </PageModal>
-           </>
-       )
+
+
+    render() {     
+        return (
+            <>
+                <PageModal>
+                    <Profile userInfo={this.state.user}></Profile>
+                </PageModal>
+            </>
+        )
     }
 }

@@ -3,7 +3,7 @@ import classes from './Login.module.scss'
 import {UsernameInput} from './UsernameForm/UsernameInput'
 import Button from '../UI/Button/Button'
 
-const Login = ({username, handleOnChange, handleSubmit}) => {
+const Login = ({username, handleOnChange, handleSubmit, loginHandle}) => {
     return (
         <>
             <section className={classes.Login}>

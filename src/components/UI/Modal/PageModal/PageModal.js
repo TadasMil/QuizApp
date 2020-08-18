@@ -3,8 +3,10 @@ import classes from './PageModal.module.scss'
 
 export const PageModal = (props) => {
     return (
-        <div className={classes.PageModal}>
+        <div className={classes.PageHome}>
+            <div className={classes.PageModal}>
                 {props.children}
+            </div>
         </div>
     )
 }

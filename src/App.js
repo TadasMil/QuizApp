@@ -8,16 +8,23 @@ import Quiz from './containers/Quiz/Quiz'
 
 class App extends Component {
   state = {
-    auth: false
+    isAuth: false
   }
+
+  handleAuth = () => {
+    this.setState({
+      isAuth: true
+    })
+  }
+
   render(){
     return (
       <div className="App">
         <Layout>
           <Switch> 
-            <Route path='/' exact component={Authorization}/>
-            <Route path='/home' exact component={Home}/>
-            <Route path='/quiz' exact component={Quiz}/>
+            <Route path="/" exact render={() => <Authorization handleAuth={this.handleAuth}/>} />
+            {this.state.isAuth ? <Route path='/home' exact component={Home}/> : <Redirect to="/"/>}
+            {this.state.isAuth ? <Route path='/quiz' exact component={Quiz}/> : <Redirect to="/"/>}
           </Switch>
         </Layout>
       </div>

@@ -2,7 +2,9 @@ import React from 'react'
 import {NavigationItem} from './NavigationItem/NavigationItem'
 import classes from './NavigationItems.module.scss'
 
-export default function NavigationItems() {
+export default function NavigationItems({handleActiveUser}) {
+
+
     return (
         <>
             <ul className={classes.NavigationItems}>
