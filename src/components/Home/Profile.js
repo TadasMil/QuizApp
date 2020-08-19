@@ -9,8 +9,8 @@ function Profile(props) {
             <div className={classes.Profile}>
                 <h2>Profile</h2>
                     <ProfileInfo userInfo={props.userInfo}/>
-                </div>
-            <Button>Start Quiz</Button>
+            </div>
+            <Button handleSubmit={props.handleOnSubmit} buttonClass='ButtonPages'>Start Quiz</Button>
         </>
 
     );

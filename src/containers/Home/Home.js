@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { PageModal } from '../../components/UI/Modal/PageModal/PageModal'
 import Profile from '../../components/Home/Profile'
+import axios from 'axios'
 
 export default class Home extends Component {
    state = {
@@ -23,13 +24,16 @@ export default class Home extends Component {
         })
    }
 
-
+   handleOnSubmit = () => {
+       this.props.history.push('/quiz')
+   }
 
     render() {     
         return (
             <>
+
                 <PageModal>
-                    <Profile userInfo={this.state.user}></Profile>
+                    <Profile handleOnSubmit={this.handleOnSubmit} userInfo={this.state.user}></Profile>
                 </PageModal>
             </>
         )

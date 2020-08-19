@@ -14,6 +14,8 @@ class Authorization extends Component {
     }
 
     componentDidMount(){
+        const userExists = this.handleActiveUser();
+        if(!userExists){
         axios.get('/users.json')
         .then(response => {      
             let usersData = Object.keys(response.data).map((user) => {
@@ -22,7 +24,19 @@ class Authorization extends Component {
          this.setState({
              users: usersData
          })
-        })
+        }) 
+        }
+    }
+
+    handleActiveUser = () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if(user === null){
+            return false;
+        } else {  
+            this.props.handleAuth();
+            this.props.history.push('/home')
+            return true;
+        }
     }
 
     handleUsername = (event) => {
@@ -67,8 +81,10 @@ class Authorization extends Component {
             .catch(error=>{
                 console.log(error)
             })
+            this.props.history.push('/home')
         }
     }
+    
     render() {
         
         return (

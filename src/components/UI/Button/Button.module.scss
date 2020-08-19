@@ -1,6 +1,6 @@
 @import '../../../commonStyles/variables';
 
-.Button {
+.ButtonMain {
     padding: 0.5rem 3rem;
     display: block;
     margin: 0 auto 5rem auto;
@@ -18,4 +18,31 @@
         background-color: #000000;
         color: $mainWhite;
     }
+}
+
+.ButtonPages {
+    padding: 0.5rem 3rem;
+    margin: 2rem 1rem;
+    display: block;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    background-color: $mainGreenary;
+    color: $mainBlack;
+
+    &:hover{
+        background-color: #000000;
+        color: $mainWhite;
+    }
+}
+
+@media(max-width: $mobilePhone2){
+   .ButtonMain{
+       padding: 0.4rem 2.5rem;
+       font-size: 1rem;
+   }
 }

@@ -20,3 +20,14 @@
         border-bottom: 1px solid $mainWhite;
     }
 }
+
+@media(max-width: $mobilePhone2){
+    .Profile{
+        h2{
+            font-size: 1.5rem;
+        }
+        li{
+            font-size: 0.9rem;
+        }
+    }
+}
